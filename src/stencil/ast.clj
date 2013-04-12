@@ -17,7 +17,7 @@
                               the existing children, make the new node."))
 
 (defprotocol ASTNode
-  (render [this ^StringBuilder sb context-stack]
+  (render [this sb context-stack]
     "Given a StringBuilder and the current context-stack, render this node to
      the result string in the StringBuilder."))
 
@@ -105,7 +105,7 @@
 
 (extend-protocol ASTNode
   java.lang.String
-  (render [this ^StringBuilder sb context-stack] (.append sb this))
+  (render [this sb context-stack] (.append sb this))
   clojure.lang.PersistentVector
   (render [this sb context-stack]
     (dotimes [i (count this)]
